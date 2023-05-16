@@ -1,237 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>Object Detection for Workplace</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
 
-  <title>Project Title Here</title>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="../home.html"
+          >Practical Machine Deep Learning</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../home.html"
+                >Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-  <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <!-- Page Content -->
     <div class="container">
-      <a class="navbar-brand" href="../home.html">Practical Machine Deep Learning</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="../home.html">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../contact.html">Contact</a>
-          </li>
-        </ul>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">Object Detection for Workplace</h1>
+          <ul class="list-unstyled">
+            <li>Ali Khattab 900191895</li>
+            <li>Kirolos Mikhail 900191250</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Problem Statement</h2>
+          <!-- make p justified -->
+          <p class="text-justify">
+            In many industries such as construction, mining, and manufacturing,
+            the safety of workers is a top priority. To ensure the safety of
+            workers, it is essential to detect if they are wearing proper safety
+            equipment such as helmets and vests. However, manual inspection of
+            workers to ensure they are wearing proper safety gear can be
+            time-consuming and impractical, especially in large industrial
+            settings. Therefore, an automated object segmentation system that
+            can detect if a person is wearing a helmet and a vest or not is
+            crucial for worker safety.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Dataset</h2>
+          <p class="text-justify">
+            This dataset is a great collection of images, since the labels are
+            in the following format: 'Hardhat', 'Mask', 'NO-Hardhat', 'NO-Mask',
+            'NO-Safety Vest', 'Person', 'Safety Cone', 'Safety Vest',
+            'machinery', 'vehicle'. It is very important in tracking and
+            monitoring applications whether a person is wearing Hardhat or
+            NO-Hardhat. Most of the datasets are not annotated in this
+            particular way, making this dataset very useful.
+            <sup>[1]</sup>
+          </p>
+
+          <br />
+          <p class="text-justify">
+            <b>
+              <u> Description and details of the dataset are as follows: </u>
+            </b>
+          </p>
+
+          <ul>
+            <li><b>Number of classes:</b> 10</li>
+            <li><b>Label Annotation:</b> YOLO format (.txt)</li>
+            <li>
+              <b>Metadata:</b> metadata.csv and count.csv provides information
+              about the dataset and train-val-test count information
+            </li>
+            <li>
+              <b>Supported Classes:</b>
+              {<b>0:</b> 'Hardhat', <b>1:</b> 'Mask', <b>2:</b> 'NO-Hardhat',
+              <b>3:</b> 'NO-Mask', <b>4:</b> 'NO-Safety Vest',
+              <b>5:</b> 'Person', <b>6:</b> 'Safety Cone', <b>7:</b> 'Safety
+              Vest', <b>8:</b> 'machinery', <b>9:</b> 'vehicle'}
+            </li>
+          </ul>
+
+          <br />
+          <!-- Empty Line before the image -->
+          <div class="img-container" align="center">
+            <!-- Block parent element -->
+            <img
+              src="resources/images/dataset-cover.jpg"
+              class="img-fluid text-center"
+            />
+          </div>
+          <br />
+          <!-- Empty Line after the image -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Input/Output Examples</h2>
+
+          <p class="text-justify">
+            The input for our project will be a series of images taken from a
+            worksite where workers are expected to wear helmets and vests. These
+            images will be processed using the deep learning model, which will
+            detect and draw bounding boxes around anyone not wearing helmets or
+            vests in the image.
+          </p>
+
+          <p class="text-justify">
+            After processing the image, the output will be a new image with
+            bounding boxes drawn around any none helmets or vests wearers. These
+            bounding boxes will be labeled with a confidence score, indicating
+            how certain the model is that the object in question is indeed
+            wearing a helmet or vest.
+          </p>
+          <p class="text-justify">
+            A couple of examples of the output can be seen in the attached
+            images below.
+          </p>
+
+          <br />
+          <!-- Empty Line before the image -->
+          <div class="img-container" align="center">
+            <!-- Block parent element -->
+            <h3>Test one</h3>
+            <!-- make them side by side -->
+            <div class="row">
+              <div class="col">
+                <div>Before</div>
+                <img
+                  src="resources/images/Ali_Before.jpeg"
+                  class="img-fluid text-center"
+                />
+              </div>
+              <div class="col">
+                <div>After</div>
+                <img
+                  src="resources/images/Ali_After.jpg"
+                  class="img-fluid text-center"
+                />
+              </div>
+            </div>
+            <p>
+              Since the specimens in the image are not wearing any Personal
+              Protection Equipment, boxes are drawn identifying them.
+            </p>
+            <br />
+
+            <h3>Test Two</h3>
+            <!-- make them side by side -->
+            <div class="row">
+              <div class="col">
+                <div>Before</div>
+                <img
+                  src="resources/images/construction-safety.jpg"
+                  class="img-fluid text-center"
+                />
+              </div>
+              <div class="col">
+                <div>After</div>
+                <img
+                  src="resources/images/construction-safety.jpg"
+                  class="img-fluid text-center"
+                />
+              </div>
+            </div>
+            <p>
+              Since the specimens in the image are wearing Personal Protection,
+              nothing is drawn.
+            </p>
+            <br />
+          </div>
+          <br />
+          <!-- Empty Line after the image -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">State of the art</h2>
+
+          <p class="text-justify">
+            As per Jye-Hwang Lo et al, the following results have been achieved
+            given that they have tried multiple YOLO versions; from version3 and
+            up to version 7.
+          </p>
+          <p class="text-justify">
+            As seen in the figure below, they have trained and tested the model
+            given different visibility conditions as well as the existence and
+            the absence of certain aspects of the PPE.
+          </p>
+          <p class="text-justify">
+            Said model mainly performs better when tested on version 7 of YOLO.
+            <sup>[2]</sup>
+          </p>
+
+          <br />
+          <!-- Empty Line before the image -->
+          <div class="img-container" align="center">
+            <!-- Block parent element -->
+            <img
+              src="resources/images/SOTA.png"
+              class="img-fluid text-center"
+            />
+          </div>
+          <br />
+          <!-- Empty Line after the image -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">YOLOv5</h2>
+
+          <p>
+            YOLO is a convolutional deep learning model that was mainly
+            developed and trained on object detection. It has the following
+            architecture that consists of a number of convolutional layers that
+            work on downsampling the image and passing it through multiple
+            layers. The final output of our network is the 7 × 7 × 30 tensor of
+            predictions.
+          </p>
+          <p>
+            We shall use in the scope of this project version 5 of YOLO, which
+            is one of the most advanced versions of YOLO. YOLO nano, explained
+            in the previous section, is similar to this version of YOLO being
+            used, but is scaled up to cover more parameters.
+          </p>
+
+          <br />
+          <!-- Empty Line before the image -->
+          <div class="img-container" align="center">
+            <!-- Block parent element -->
+            <img
+              src="resources/images/architecture.png"
+              class="img-fluid text-center"
+            />
+          </div>
+          <br />
+          <!-- Empty Line after the image -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Proposed Updates</h2>
+
+          <h5 class="mt-5">Update #1: Preprocessing for Dataset 2</h5>
+          <p class="text-justify">
+            In this step, a YOLOfier was created to transform
+            <a
+              href="https://www.kaggle.com/datasets/andrewmvd/hard-hat-detection?resource=download"
+              >this</a
+            >
+            dataset to be compliant to the YOLO convention (using txt files
+            rather than xml, and following a different label distribution)
+          </p>
+          <br />
+          <!-- Empty Line before the image -->
+          <div class="img-container" align="center">
+            <!-- Block parent element -->
+            <img
+              src="resources/images/PPE_tree.png"
+              class="img-fluid text-center"
+            />
+          </div>
+          <h4 class="text-center">
+            <a href="https://github.com/KirolosAssaad/PPE-YOLOv5_dataset"
+              >Modified Dataset Repo</a
+            >
+          </h4>
+          <br />
+          <!-- Empty Line after the image -->
+
+          <h5 class="mt-5">Update #2: Preprocessing for Dataset 1</h5>
+          <p>
+            In this update we used
+            <a
+              href="https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow"
+              >this</a
+            >
+            dataset, which ended up being the better option of the two, but this
+            dataset covered a number of classes that we did not need, so we had
+            to filter them out. We did so by iterating over all labels and
+            removing the ones that we did not need.
+          </p>
+          <br />
+
+          <h5 class="mt-5">
+            Update #3: Training 4 times using the 2 available datasets
+          </h5>
+          <p>
+            In this update we trained the model 4 times, twice for each dataset,
+            once with the first dataset but given the weights of the second
+            dataset, and once with the second dataset but given the weights of
+            the first dataset.
+          </p>
+          <p>
+            Upon training, we noticed that the first dataset gave much better
+            results than the second, and that whenever the second dataset was
+            used, the model would not converge and the results would be very
+            bad.
+          </p>
+          <br />
+          <!-- Comparison -->
+          <div class="img-container" align="center">
+            <!-- Block parent element -->
+            <img
+              src="resources/images/Comparison.png"
+              class="img-fluid text-center"
+            />
+          </div>
+          <p class="text-center">
+            a comparison between the 4 model weights and the original.
+          </p>
+          <br />
+
+          <h5 class="mt-5">Update #4: Hyperparameter finetuning</h5>
+          <p>
+            In this update we relied on the hyperparameter finetuning feature of
+            YOLO called evolve, which is a genetic algorithm that tries to find
+            the best hyperparameters for the model. We used this feature to find
+            the best hyperparameters for the model, and we ended up with the
+            following:
+          </p>
+
+          <ul>
+            <li><b>lr0:</b> 0.01</li>
+            <li><b>lrf:</b> 0.01158</li>
+            <li><b>momentum:</b> 0.96314</li>
+            <li><b>weight_decay:</b> 0.00043</li>
+            <li><b>warmup_epochs:</b> 3.4737</li>
+            <li><b>warmup_momentum:</b> 0.74568</li>
+            <li><b>warmup_bias_lr:</b> 0.09963</li>
+            <li><b>box:</b> 0.05056</li>
+            <li><b>cls:</b> 0.49457</li>
+            <li><b>cls_pw:</b> 1.0034</li>
+            <li><b>obj:</b> 1.0615</li>
+            <li><b>obj_pw:</b> 0.99969</li>
+            <li><b>iou_t:</b> 0.2</li>
+            <li><b>anchor_t:</b> 3.3165</li>
+            <li><b>fl_gamma:</b> 0.0</li>
+            <li><b>hsv_h:</b> 0.01371</li>
+            <li><b>hsv_s:</b> 0.79047</li>
+            <li><b>hsv_v:</b> 0.45294</li>
+            <li><b>degrees:</b> 0.0</li>
+            <li><b>translate:</b> 0.11381</li>
+            <li><b>scale:</b> 0.4337</li>
+            <li><b>shear:</b> 0.0</li>
+            <li><b>perspective:</b> 0.0</li>
+            <li><b>flipud:</b> 0.0</li>
+            <li><b>fliplr:</b> 0.5</li>
+            <li><b>mosaic:</b> 0.99609</li>
+            <li><b>mixup:</b> 0.0</li>
+            <li><b>copy_paste:</b> 0.0</li>
+            <li><b>anchors:</b> 2.0</li>
+          </ul>
+
+          <br />
+          <h5 class="mt-5">Update #5: Post processing</h5>
+          <p>
+            In this update we took the results of the model (the bounding boxes)
+            anf filtered out the ones we don't need, and then we drew the
+            bounding boxes on the image. By the ones we don't need, we mean the
+            people already in safety helmets and vests.
+          </p>
+          <br />
+          <div class="row">
+            <div class="col">
+              <div>Original Photo</div>
+              <img
+                src="resources/images/original.png"
+                class="img-fluid text-center"
+              />
+            </div>
+            <div class="col">
+              <div>Before Post Processing</div>
+              <img
+                src="resources/images/before_post.png"
+                class="img-fluid text-center"
+              />
+            </div>
+            <div class="col">
+              <div>After Post Processing</div>
+              <img
+                src="resources/images/after_post.png"
+                class="img-fluid text-center"
+              />
+            </div>
+          </div>
+          <br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Results</h2>
+
+          <p>
+            We ended up using the first dataset, the one mentioned above, and it
+            yielded the following results:
+            <b>accuracy</b> of 0.935, <b>precision</b> of 0.95, <b>recall</b> of
+            0.94, and <b>F1 score</b> of 0.89.
+          </p>
+
+          <br />
+          <!-- Empty Line before the image -->
+          <div class="row">
+            <div class="col">
+              <img
+                src="resources/images/r1.png"
+                class="img-fluid text-center"
+              />
+            </div>
+            <div class="col">
+              <img
+                src="resources/images/r2.png"
+                class="img-fluid text-center"
+              />
+            </div>
+            <div class="col">
+              <img
+                src="resources/images/r3.png"
+                class="img-fluid text-center"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col">
+              <img
+                src="resources/images/r4.png"
+                class="img-fluid text-center"
+              />
+            </div>
+            <div class="col">
+              <img
+                src="resources/images/r5.png"
+                class="img-fluid text-center"
+              />
+            </div>
+          </div>
+          <br />
+          <!-- Empty Line after the image -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Technical report</h2>
+
+          <p>
+            Here you will detail the details related to training, for example:
+          </p>
+
+          <ul>
+            <li><b>Programming framework:</b> Pytorch</li>
+            <li><b>Training hardware:</b> RTX 2080 SUPER</li>
+            <li><b>Training time:</b> 3h per session</li>
+            <li><b>Number of epochs:</b> 200 - 400 (dynamic)</li>
+            <li><b>Time per epoch:</b> 1.67 mins</li>
+            <li>
+              <b>Difficulties:</b> Dataset 2 required a lot of preprocesing and ended up with bad
+              result
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Conclusion</h2>
+
+          <p>
+            In Conclusion, we intend to include facial detection and recognition
+            as a part of our future work to be able to know who is not abiding
+            by the rules. As for our learning outcomes, we were able to
+            understand how datasets can drastically be turning point to a model
+            and how preprocessing the data is just as important as training the
+            model itself.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">References</h2>
+
+          <p>List all references here, the following are only examples</p>
+
+          <ol>
+            <li>
+              <a
+                href="https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow"
+                >Dataset URL</a
+              >
+            </li>
+            <li>
+              <a href="https://www.mdpi.com/2071-1050/15/1/391#"
+                >State of the Art Model URL</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.kaggle.com/datasets/andrewmvd/hard-hat-detection?resource=download"
+                >Dataset 2 URL</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/ultralytics/yolov5"
+                >YOLOv5 GitHub Repo</a
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Project Title Here</h1>
-        <ul class="list-unstyled">
-          <li>Team Member #1</li>
-          <li>Team Member #2</li>
-        </ul>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Problem Statement</h2>
-		<p>
-			Problem statement Detailes here
-		</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Dataset</h2>
-
-        <p>
-			Details about the dataset here, add your dataset images below
-		</p>
-
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/imagenet.jpeg" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Input/Output Examples</h2>
-
-        <p>
-			Place few examples here to illustrate the dataset and your problem statement, add your model images below
-		</p>
-
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/examples.jpg" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">State of the art</h2>
-
-        <p>
-			State here state of the art models and their accuracies, you might need to do this by including images of tables
-		</p>
-
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/state-of-the-art-results.png" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Orignial Model from Literature</h2>
-
-        <p>
-			Details about the model here, add your model images below
-		</p>
-
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/model.png" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Proposed Updates</h2>
-
-        <p>
-			Add all the model updates you made here, need as many images as you wish
-		</p>
-
-		<h5 class="mt-5">Update #1: Used new bla bla</h5>
-		<p>
-			details here
-		</p>
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/update1.jpeg" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-
-		<h5 class="mt-5">Update #2: Used new whatever</h5>
-		<p>
-			details here
-		</p>
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/update2.png" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Results</h2>
-
-        <p>
-			Add your results here, add graphs and images to illustrate it.
-			Compare your results to the original model and state of the art
-		</p>
-
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/results.png" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Technical report</h2>
-
-        <p>
-			Here you will detail the details related to training, for example:
-		</p>
-
-	 	<ul>
-		  <li>Programming framework</li>
-		  <li>Training hardware i.e. colab or azure or anything else</li>
-		  <li>Training time</li>
-		  <li>Number of epochs</li>
-		  <li>Time per epoch</li>
-		  <li>Any other important detail or difficulties</li>
-		</ul> 
-      </div>
-    </div>
-
-	<div class="row">
-	  <div class="col-lg-12 text-left">
-	    <h2 class="mt-5">Conclusion</h2>
-
-	    <p>
-			Conclusion and future work (including lessons learned and interesting findings
-		</p>
-
-	  </div>
-	</div>
-
-	<div class="row">
-	  <div class="col-lg-12 text-left">
-	    <h2 class="mt-5">References</h2>
-
-	    <p>
-	    	List all references here, the following are only examples
-	    </p>
-
-		<ol>
-		  <li><a href="http://www.google.com">Problem statement url</a></li>
-		  <li><a href="http://www.google.com">Dataset URL</a></li>
-		  <li><a href="http://www.google.com">Model Reference URL</a></li>
-		</ol> 
-	  </div>
-	</div>
-
-  </div>
-
-
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/jquery/jquery.slim.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.slim.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
